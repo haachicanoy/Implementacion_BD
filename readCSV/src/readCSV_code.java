@@ -19,6 +19,7 @@ public class readCSV_code {
 			Scanner inputStream = new Scanner(file);
 			while (inputStream.hasNext()) {
 				String data = inputStream.next();
+				String[] values = data.split(",");
 				System.out.println(data);
 			}
 			inputStream.close();
