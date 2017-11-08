@@ -27,6 +27,7 @@ public class readCSV_code {
 	public static boolean seqScan(String path){
 		//1048576
 		//400000 repetidos
+		//commit test Diego
 		// .csv comma separated values
 		boolean status = false;
 		String fileName = path;//"data.csv";
