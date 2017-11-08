@@ -1,9 +1,14 @@
 package Main;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 
 /**
  * readCSV.java
@@ -12,36 +17,51 @@ import java.util.Scanner;
 
 public class readCSV_code {
 	
-	public static void main(String[] args) {
-		
+    static BufferedWriter output = null;
+	static Set<String> items ;// Variable que almacena los registros unicos
+	File fileResult;//Fichero resultado
+	
+	public static void main(String[] args) throws IOException {
+
+        File file = new File("C_1.csv");
+        output = new BufferedWriter(new FileWriter(file));
 		List<String> paths = getFiles("A");
+		items = new HashSet<>();
 		
 		for (String path : paths) {
 			System.out.println("Loading: "+path);
 			seqScan(path);
 			System.out.println("Loaded: "+path);
 		}
- 		
+		if ( output != null ) {
+            output.close();
+          }
+		
+		System.out.println("Reg:"+ items.size());
 	}
 	
-	public static boolean seqScan(String path){
+	
+	public static boolean seqScan(String path) throws IOException{
 		//1048576
-		//400000 repetidos
+		//400 repetidos
 		//commit test Diego
 		// .csv comma separated values
 		boolean status = false;
 		String fileName = path;//"data.csv";
-		File file = new File(fileName); // TODO: read about File
+		File file = new File(fileName); 
 		try {
 			Scanner inputStream = new Scanner(file);
 			while (inputStream.hasNext()) {
 				String data = inputStream.next();
-				System.out.println(data);
+				if(!items.contains(data)){//Si no se ha leido el registro se adiciona
+					System.out.println(data);
+					items.add(data);
+					output.write(data+"\n");//imprimir en el fichero de salida
+				}
 			}
 			inputStream.close();
 			status = true;
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();			
 		}
 		return status;
@@ -77,6 +97,20 @@ public class readCSV_code {
         
     }
 	
+	public static void bufferOutput() throws IOException {
+		String text = "Hello world";
+		BufferedWriter output = null;
+		try {
+			File file = new File("example.txt");
+			output = new BufferedWriter(new FileWriter(file));
+			output.write(text);
+			} catch ( IOException e ) {
+				e.printStackTrace();
+				} finally {
+					if ( output != null ) {
+						output.close();
+						}
+					}
+		}
 	
-
 }
