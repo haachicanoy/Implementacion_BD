@@ -97,7 +97,7 @@ public class readCSV_code {
         
     }
 	
-	public static void bufferOutput() throws IOException {
+/*	public static void bufferOutput() throws IOException {
 		String text = "Hello world";
 		BufferedWriter output = null;
 		try {
@@ -111,6 +111,6 @@ public class readCSV_code {
 						output.close();
 						}
 					}
-		}
+		}*/
 	
 }
