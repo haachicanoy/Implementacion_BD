@@ -12,6 +12,7 @@ public class readCSV_code {
 	public static void main(String[] args) {
 		
 		// .csv comma separated values
+		// Test commit Diego :D
 		String fileName = "data.csv";
 		File file = new File(fileName); // TODO: read about File
 		try {
