@@ -9,6 +9,9 @@ import java.util.Scanner;
 
 public class SeqScan implements Iterator<List<Object>>{
 
+
+    private static final String DEFAULT_SEPARATOR = ";";
+    
 	private String tableName; 		//Nombre de la tabla (Directorio) a escanear
 	private int limit = 10;			//Limite del tamaño de cada bloque
 	private int countBlocks = 1;	//Contador de bloques
@@ -67,8 +70,8 @@ public class SeqScan implements Iterator<List<Object>>{
 	}
 	
 	public List<Object> parseRow(String row , String schema){
-		String[] tempRow = row.split(";");
-		String[] tempSchema = schema.split(";");
+		String[] tempRow = row.split(DEFAULT_SEPARATOR);
+		String[] tempSchema = schema.split(DEFAULT_SEPARATOR);
 		List<Object> list = null;
 		if(tempRow.length > 0){
 			list = new ArrayList<>();

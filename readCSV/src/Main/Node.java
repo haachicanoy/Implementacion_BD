@@ -4,10 +4,10 @@ import java.util.List;
 
 public class Node {
 
-	String type;
-	List<String> tablesInput;
-	List<String> parameters;
-	String tableNameOutput;
+	private String type;
+	private List<String> tableInput;
+	private List<String> parameters;
+	private String tableNameOutput;
 	
 	public String getType() {
 		return type;
@@ -15,11 +15,11 @@ public class Node {
 	public void setType(String type) {
 		this.type = type;
 	}
-	public List<String> getTablesInput() {
-		return tablesInput;
+	public List<String> getTableInput() {
+		return tableInput;
 	}
-	public void setTablesInput(List<String> tablesInput) {
-		this.tablesInput = tablesInput;
+	public void setTableInput(List<String> tablesInput) {
+		this.tableInput = tablesInput;
 	}
 	public List<String> getParameters() {
 		return parameters;

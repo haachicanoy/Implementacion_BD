@@ -12,11 +12,9 @@ public class TestSeqScan {
 			count++;
 			List<Object> list = (List<Object>) scan.next();
 			String row = count+":";
-			if(list != null){
-				for (Object object : list) {
-					row = row+" - "+String.valueOf(object);
+			for (Object object : list) {
+				row = row+" - "+String.valueOf(object);
 				}
-			}
 			System.out.println(row);
 		}
 		System.out.println("End: "+count);
