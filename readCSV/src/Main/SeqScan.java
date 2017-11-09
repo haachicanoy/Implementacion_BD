@@ -9,12 +9,12 @@ import java.util.Scanner;
 
 public class SeqScan implements Iterator<List<Object>>{
 
-	private String tableName;
-	private int limit = 10;
-	private int countBlocks = 1;
-	private int countRows = 1;
-	private String dataSchema; 
-	private Scanner inputStream;
+	private String tableName; 		//Nombre de la tabla (Directorio) a escanear
+	private int limit = 10;			//Limite del tamaño de cada bloque
+	private int countBlocks = 1;	//Contador de bloques
+	private int countRows = 1;		//Contador de registros dentro de cada bloque
+	private String dataSchema; 		//Contiene la informacion del esquema a escanear
+	private Scanner inputStream;	
 	
 	
 	public SeqScan(String tableName) {
@@ -23,7 +23,7 @@ public class SeqScan implements Iterator<List<Object>>{
 	
 	public void open(String tableName){
 		this.tableName = tableName;
-		File file = new File(tableName+"/schema.csv"); 
+		File file = new File(tableName+"/schema.csv"); //Se carga el esquema
 		try {
 			Scanner inputStream = new Scanner(file);
 			while (inputStream.hasNext()) {
@@ -33,11 +33,13 @@ public class SeqScan implements Iterator<List<Object>>{
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();			
 		}
-        nextBlock();
+        nextBlock();									//Se inicializa en el primer Bloque
 	}
 
+	//Se pregunta si hay siguiente en un bloque
+	//De lo contrario se carga el siguiente bloque y se inicia nuevamente el contador de registros
 	@Override
-	public boolean hasNext() {
+	public boolean hasNext() {		
 
 		if(countRows > limit){
 			this.close();
