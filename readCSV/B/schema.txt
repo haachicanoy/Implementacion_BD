@@ -1,1 +1,0 @@
-id-Integer,A-Integer,x-String,price-Double
